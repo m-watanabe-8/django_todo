@@ -1,0 +1,28 @@
+{% load django_bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>TODO</title>
+        <meta charset="utf-8">
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href={% url 'todo-list' %}>
+                        <img src="/media/pages/todo.png" style="width:60px;" />
+                    </a>
+                    <!-- <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    </form> -->
+                </div>
+            </nav>
+        </header>
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>

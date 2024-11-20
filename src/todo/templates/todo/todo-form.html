@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container d-flex justify-content-center flex-wrap-reverse py-3">
+        <div class="card mb-2" style="width: 50rem;">
+            <div class="card-body">
+                <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="mb-2">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    <a href="{% url 'todo-list' %}" class="btn btn-secondary">キャンセル</a>
+                </div>
+                </form>
+                {% if object %}
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{object.pk}}">削除</button> 
+                {% endif %}
+            </div>
+            {% if object %}
+                {% include 'todo/todo-delete.html' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

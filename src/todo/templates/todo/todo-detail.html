@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container d-flex justify-content-center flex-wrap-reverse py-3">
+        <div class="card mb-2" style="width: 50rem;">
+            <div class="card-body">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">{{ object.title }}</h5>
+                            {% if object.status == 'not_started' %}
+                                <h6 class="p-2 bg-warning rounded-2" aria-expanded="false">
+                            {% elif object.status == 'start' %}
+                                <h6 class="p-2 bg-info text-white rounded-2" aria-expanded="false">
+                            {% else %}
+                                <h6 class="p-2 bg-secondary text-white rounded-2" aria-expanded="false">
+                            {% endif %}
+                            {{ object.get_status_display }}
+                        </h6>
+                    </div>
+                    <p class="card-text">{{ object.content }}</p>
+                    <a href="{% url 'todo-update' object.pk %}" type="submit" class="btn btn-success">編集</a>
+                    <a href="{% url 'todo-list' %}" class="btn btn-secondary">キャンセル</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
