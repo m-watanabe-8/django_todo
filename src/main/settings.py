@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
 
     'todo',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'ja'
 
 TIME_ZONE = 'Asia/Tokyo'
@@ -118,7 +117,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static_local" ]
 MEDIA_URL = '/media/'
@@ -126,6 +124,10 @@ MEDIA_ROOT = BASE_DIR / 'media_local'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = "accounts.User" # カスタムユーザーを認証用ユーザーとして登録
+
+LOGIN_REDIRECT_URL = "accounts:index"
+LOGOUT_REDIRECT_URL = "accounts:index"
+LOGIN_URL = 'accounts:login'
