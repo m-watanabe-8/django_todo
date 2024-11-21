@@ -2,7 +2,9 @@
 {% block content %}
     <div class="container d-flex justify-content-center flex-wrap-reverse py-3">
         <div class="wrapper d-flex flex-column align-items-end">
-            <a href="{% url 'todo-create' %}" type="submit" class="btn btn-outline-success mb-3" style="width: 7rem;">＋ 新規作成</a>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'todo-create' %}" type="submit" class="btn btn-outline-success mb-3" style="width: 7rem;">＋ 新規作成</a>
+            {% endif %}
             {% if object_list|length != 0 %}
             {% for obj in object_list %}
                 {% if obj.status == 'completed' %}
@@ -24,7 +26,9 @@
                             </h6>
                         </div>
                         <p class="card-text">{{ obj.content | linebreaksbr }}</p>
-                        <a href="{% url 'todo-update' obj.pk %}" type="submit" class="btn btn-success">編集</a>
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'todo-update' obj.pk %}" type="submit" class="btn btn-success">編集</a>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
