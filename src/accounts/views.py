@@ -31,4 +31,4 @@ class LoginView(BaseLoginView):
     # redirect_authenticated_user = True
 
 class LogoutView(LoginRequiredMixin, BaseLogoutView):
-    template_name = "account/login.html"
+    success_url = reverse_lazy("accounts:index")
