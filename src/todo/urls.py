@@ -1,6 +1,7 @@
 from django.urls import path, re_path, include
 from .views import TodoListView,TodoUpdateView,TodoCreateView,TodoDetailView,TodoDeleteView
 
+app_name = "todo"
 urlpatterns = [
     path('', TodoListView.as_view(),name='todo-list'),
     re_path(r'update/(?P<pk>[\w-]+)/$', TodoUpdateView.as_view(),name='todo-update'),

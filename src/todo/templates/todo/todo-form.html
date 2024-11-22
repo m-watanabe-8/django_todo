@@ -8,7 +8,7 @@
                 {{ form.as_p }}
                 <div class="mb-2">
                     <button type="submit" class="btn btn-primary">保存</button>
-                    <a href="{% url 'todo-list' %}" class="btn btn-secondary">キャンセル</a>
+                    <a href="{% url 'todo:todo-list' %}" class="btn btn-secondary">キャンセル</a>
                 </div>
                 </form>
                 {% if object %}

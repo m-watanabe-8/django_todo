@@ -16,11 +16,11 @@
                             {{ object.get_status_display }}
                         </h6>
                     </div>
-                    <p class="card-text">{{ object.content }}</p>
+                    <p class="card-text">{{ object.content | linebreaksbr }}</p>
                     {% if request.user.is_authenticated %}
-                        <a href="{% url 'todo-update' object.pk %}" type="submit" class="btn btn-success">編集</a>
+                        <a href="{% url 'todo:todo-update' object.pk %}" type="submit" class="btn btn-success">編集</a>
                     {% endif %}
-                    <a href="{% url 'todo-list' %}" class="btn btn-secondary">キャンセル</a>
+                    <a href="{% url 'todo:todo-list' %}" class="btn btn-secondary">キャンセル</a>
                 </div>
             </div>
         </div>

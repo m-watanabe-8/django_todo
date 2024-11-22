@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container d-flex justify-content-center flex-wrap-reverse py-3">
-        <div class="wrapper d-flex flex-column align-items-end">
-            {% if request.user.is_authenticated %}
-                <a href="{% url 'todo-create' %}" type="submit" class="btn btn-outline-success mb-3" style="width: 7rem;">＋ 新規作成</a>
-            {% endif %}
-            {% if object_list|length != 0 %}
-            {% for obj in object_list %}
-                {% if obj.status == 'completed' %}
-                    <div class="card mb-2 bg-secondary-subtle" style="width: 50rem;">
-                {% else %}
-                    <div class="card mb-2" style="width: 50rem;">
+        <div class="wrapper d-flex flex-column">
+            <h4>TODOリスト</h4>
+            <div class="todo-wrapper d-flex flex-column align-items-end">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'todo:todo-create' %}" type="submit" class="btn btn-outline-success mb-3" style="width: 7rem;">＋ 新規作成</a>
                 {% endif %}
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <a href="{% url 'todo-detail' obj.pk %}" class="card-title fs-5 fw-bold link-offset-2">{{ obj.title }}</a>
-                            {% if obj.status == 'not_started' %}
-                                <h6 class="p-2 bg-warning rounded-2" aria-expanded="false">
-                            {% elif obj.status == 'start' %}
-                                <h6 class="p-2 bg-info text-white rounded-2" aria-expanded="false">
-                            {% else %}
-                                <h6 class="p-2 bg-secondary text-white rounded-2" aria-expanded="false">
-                            {% endif %}
-                                {{ obj.get_status_display }}
-                            </h6>
-                        </div>
-                        <p class="card-text">{{ obj.content | linebreaksbr }}</p>
-                        {% if request.user.is_authenticated %}
-                            <a href="{% url 'todo-update' obj.pk %}" type="submit" class="btn btn-success">編集</a>
+                {% if object_list|length != 0 %}
+                    
+                    {% for obj in object_list %}
+                        {% if obj.status == 'completed' %}
+                            <div class="card mb-2 bg-secondary-subtle" style="width: 50rem;">
+                        {% else %}
+                            <div class="card mb-2" style="width: 50rem;">
                         {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
-            {% else %}
-                <h3>表示するものはありません。</h3>
-            {% endif %}
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <a href="{% url 'todo:todo-detail' obj.pk %}" class="card-title fs-5 fw-bold link-offset-2">{{ obj.title }}</a>
+                                    {% if obj.status == 'not_started' %}
+                                        <h6 class="p-2 bg-warning rounded-2" aria-expanded="false">
+                                    {% elif obj.status == 'start' %}
+                                        <h6 class="p-2 bg-info text-white rounded-2" aria-expanded="false">
+                                    {% else %}
+                                        <h6 class="p-2 bg-secondary text-white rounded-2" aria-expanded="false">
+                                    {% endif %}
+                                        {{ obj.get_status_display }}
+                                    </h6>
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                    <a href="{% url 'todo:todo-update' obj.pk %}" type="submit" class="btn btn-success">編集</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>表示するものはありません。</h3>
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endblock content %}

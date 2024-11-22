@@ -15,13 +15,13 @@ class TodoUpdateView(UpdateView):
     template_name = 'todo/todo-form.html'
     model = TodoModel
     form_class = TodoModelForm
-    success_url = reverse_lazy("todo-list")
+    success_url = reverse_lazy("todo:todo-list")
 
 # 新規作成
 class TodoCreateView(CreateView):
     template_name = 'todo/todo-form.html'
     form_class = TodoModelForm
-    success_url = reverse_lazy("todo-list")
+    success_url = reverse_lazy("todo:todo-list")
     
 # 詳細
 class TodoDetailView(DetailView):
@@ -32,7 +32,7 @@ class TodoDetailView(DetailView):
 class TodoDeleteView(DeleteView):
     template_name = 'todo/todo-form.html'
     model = TodoModel
-    success_url = reverse_lazy("todo-list")
+    success_url = reverse_lazy("todo:todo-list")
 
     def post(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
